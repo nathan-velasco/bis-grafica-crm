@@ -1,0 +1,121 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  role         String   @default("SALESPERSON")
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  orders          Order[]
+  dailyRecords    DailyRecord[]
+  goalAssignments GoalAssignment[]
+  createdGoals    Goal[]           @relation("GoalCreator")
+}
+
+model Customer {
+  id        String  @id @default(cuid())
+  name      String
+  phone     String?
+  email     String?
+  cpf       String?
+  cnpj      String?
+  address   String?
+  city      String?
+  segment   String?
+  niche     String?
+  type      String  @default("PF")
+  notes     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  orders Order[]
+}
+
+model Order {
+  id            String @id @default(cuid())
+  customerId    String
+  salespersonId String
+  value         Float
+  date          String
+  description   String?
+  status        String @default("CONCLUIDO")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  customer    Customer @relation(fields: [customerId], references: [id])
+  salesperson User     @relation(fields: [salespersonId], references: [id])
+}
+
+model DailyRecord {
+  id               String @id @default(cuid())
+  userId           String
+  date             String
+  mood             String @default("BOM")
+  leadsReceived    Int    @default(0)
+  quotasSent       Int    @default(0)
+  forecast         Float  @default(0)
+  salesCount       Int    @default(0)
+  salesValue       Float  @default(0)
+  prospectingCount Int    @default(0)
+  followupCount    Int    @default(0)
+  retentionCount   Int    @default(0)
+  difficulty       String?
+  notes            String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@unique([userId, date])
+}
+
+model Goal {
+  id          String  @id @default(cuid())
+  title       String
+  description String?
+  targetValue Float
+  rewardValue Float   @default(0)
+  rewardDesc  String?
+  deadline    String
+  priority    String  @default("MEDIA")
+  status      String  @default("ATIVA")
+  assignType  String  @default("TEAM")
+  createdById String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  createdBy   User             @relation("GoalCreator", fields: [createdById], references: [id])
+  assignments GoalAssignment[]
+}
+
+model GoalAssignment {
+  id           String  @id @default(cuid())
+  goalId       String
+  userId       String
+  currentValue Float   @default(0)
+  completed    Boolean @default(false)
+  completedAt  String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  goal Goal @relation(fields: [goalId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id])
+
+  @@unique([goalId, userId])
+}
