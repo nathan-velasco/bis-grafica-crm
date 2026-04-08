@@ -139,21 +139,21 @@ export default function DashboardPage() {
           title="Vendas Hoje"
           value={formatCurrency(stats?.totalSalesDay ?? 0)}
           icon={DollarSign}
-          color="bg-green-100 text-green-600"
+          color="bg-rose-100 text-rose-600"
           subtitle="valor total do dia"
         />
         <StatCard
           title="Leads Hoje"
           value={String(stats?.leadsToday ?? 0)}
           icon={Users}
-          color="bg-blue-100 text-blue-600"
+          color="bg-pink-100 text-pink-600"
           subtitle="leads recebidos"
         />
         <StatCard
           title="Orçamentos Enviados"
           value={String(stats?.quotesToday ?? 0)}
           icon={BarChart2}
-          color="bg-purple-100 text-purple-600"
+          color="bg-fuchsia-100 text-fuchsia-600"
           subtitle="hoje"
         />
         <StatCard

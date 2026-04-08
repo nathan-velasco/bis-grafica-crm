@@ -51,9 +51,9 @@ export function Sidebar() {
   );
 
   return (
-    <aside className="w-64 min-h-screen bg-gradient-to-b from-blue-900 to-blue-800 flex flex-col shadow-xl">
+    <aside className="w-64 min-h-screen bg-gradient-to-b from-rose-900 to-rose-700 flex flex-col shadow-xl">
       {/* Logo */}
-      <div className="px-6 py-6 border-b border-blue-700">
+      <div className="px-6 py-6 border-b border-rose-600">
         <div className="flex items-center gap-3">
           <div className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center">
             <Printer className="w-5 h-5 text-white" />
@@ -62,22 +62,22 @@ export function Sidebar() {
             <h1 className="text-base font-bold text-white leading-tight">
               Bis Gráfica
             </h1>
-            <p className="text-xs text-blue-300">CRM</p>
+            <p className="text-xs text-rose-200">CRM</p>
           </div>
         </div>
       </div>
 
       {/* Usuário atual */}
-      <div className="px-4 py-4 border-b border-blue-700">
+      <div className="px-4 py-4 border-b border-rose-600">
         <div className="flex items-center gap-3 px-2">
-          <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white text-sm font-semibold flex-shrink-0">
+          <div className="w-8 h-8 rounded-full bg-rose-500 flex items-center justify-center text-white text-sm font-semibold flex-shrink-0">
             {session?.user?.name?.charAt(0).toUpperCase() ?? "U"}
           </div>
           <div className="min-w-0">
             <p className="text-sm font-medium text-white truncate">
               {session?.user?.name}
             </p>
-            <p className="text-xs text-blue-300">
+            <p className="text-xs text-rose-200">
               {isManager ? "Gestor" : "Vendedor"}
             </p>
           </div>
@@ -99,16 +99,16 @@ export function Sidebar() {
               className={cn(
                 "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150",
                 isActive
-                  ? "bg-white text-blue-900 shadow-sm"
-                  : "text-blue-100 hover:bg-blue-700/50 hover:text-white"
+                  ? "bg-white text-rose-900 shadow-sm"
+                  : "text-rose-100 hover:bg-rose-600/50 hover:text-white"
               )}
             >
               <Icon
-                className={cn("w-5 h-5", isActive ? "text-blue-700" : "")}
+                className={cn("w-5 h-5", isActive ? "text-rose-600" : "")}
               />
               <span className="flex-1">{item.label}</span>
               {isActive && (
-                <ChevronRight className="w-4 h-4 text-blue-400" />
+                <ChevronRight className="w-4 h-4 text-rose-400" />
               )}
             </Link>
           );
@@ -116,10 +116,10 @@ export function Sidebar() {
       </nav>
 
       {/* Logout */}
-      <div className="px-3 py-4 border-t border-blue-700">
+      <div className="px-3 py-4 border-t border-rose-600">
         <button
           onClick={() => signOut({ callbackUrl: "/login" })}
-          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-blue-200 hover:bg-blue-700/50 hover:text-white transition-colors"
+          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-rose-200 hover:bg-rose-600/50 hover:text-white transition-colors"
         >
           <LogOut className="w-5 h-5" />
           Sair

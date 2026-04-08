@@ -48,14 +48,14 @@ export default function LoginPage() {
 
   if (status === "loading") {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 to-blue-700">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-rose-900 to-rose-600">
         <div className="w-8 h-8 border-4 border-white border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-rose-900 via-rose-700 to-rose-500">
       <div className="w-full max-w-md px-6">
         {/* Logo e título */}
         <div className="text-center mb-8">
@@ -63,7 +63,7 @@ export default function LoginPage() {
             <Printer className="w-8 h-8 text-white" />
           </div>
           <h1 className="text-3xl font-bold text-white">Bis Gráfica</h1>
-          <p className="mt-1 text-blue-200">Sistema de Gestão</p>
+          <p className="mt-1 text-rose-200">Sistema de Gestão</p>
         </div>
 
         {/* Card de login */}
@@ -141,7 +141,7 @@ export default function LoginPage() {
           </form>
         </div>
 
-        <p className="text-center mt-6 text-blue-200 text-sm">
+        <p className="text-center mt-6 text-rose-200 text-sm">
           © {new Date().getFullYear()} Bis Gráfica
         </p>
       </div>
